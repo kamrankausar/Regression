@@ -1,0 +1,24 @@
+# Print the corelation value between Predictor 
+import pandas as pd
+import numpy as np
+
+def get_corrs(df):
+    col_correlations = X.corr()
+    col_correlations.loc[:, :] = np.tril(col_correlations, k=-1)
+    cor_pairs = col_correlations.stack()
+    return cor_pairs.to_dict()
+
+my_corrs = get_corrs(X)
+print(my_corrs)
+
+# Graphical representation
+#Correlation map to see how features are correlated with each other
+import matplotlib.pyplot as plt
+import seaborn as sns
+color = sns.color_palette()
+sns.set_style('darkgrid')
+%matplotlib inline
+corrmat = X.corr()
+plt.subplots(figsize=(12,9))
+sns.heatmap(corrmat, vmax=0.9, square=True)
+
